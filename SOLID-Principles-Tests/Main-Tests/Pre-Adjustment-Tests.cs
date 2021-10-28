@@ -1,0 +1,155 @@
+﻿using SOLID_Principles_LIB.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
+using SOLID_Principles_LIB.Extension_Methods;
+
+namespace SOLID_Principles_Tests.Main_Tests
+{
+    public class Pre_Adjustment_Tests
+    {
+                    //    {
+                    //new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20 },
+                    //new Item { Name = "Aged Brie", SellIn = 2, Quality = 0 },
+                    //new Item { Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7 },
+                    //new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 },
+                    //new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 15, Quality = 20 },
+                    //new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 }
+
+        public static IList<Item> _database = SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().GetItems();
+        [Fact]
+
+        public void ITEM_DECREASES_IN_QUALITY()
+        {
+            var itemqualitycount1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Quality;
+            var itempre1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre1);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
+            Assert.Equal(1, itemqualitycount1 - itempost1.Quality);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itemqualitycount2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().Quality;
+            var itempre2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault();
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre2);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault();
+            Assert.Equal(1, itemqualitycount2 - itempost2.Quality);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itemqualitycount3 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().Quality;
+            var itempre3 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault();
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre3);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost3 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault();
+            Assert.Equal(1, itemqualitycount3 - itempost3.Quality);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+        }
+
+        [Fact]
+        public void PASS_DATE_DEGRADES_ITEM_TWICE_RATE()
+        {
+
+            var itemqualitycount1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Quality;
+            var itempre1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
+            itempre1.SellIn = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre1);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
+            Assert.Equal(2, itemqualitycount1 - itempost1.Quality);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itemqualitycount2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().Quality;
+            var itempre2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault();
+            itempre2.SellIn = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre2);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault();
+            Assert.Equal(2, itemqualitycount2 - itempost2.Quality);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itemqualitycount3 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().Quality;
+            var itempre3 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault();
+            itempre3.SellIn = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre3);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost3 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault();
+            Assert.Equal(2, itemqualitycount3 - itempost3.Quality);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+        }
+
+        [Fact]
+        public void QUALITY_NEVER_NEGATIVE()
+        {
+            var itempre1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
+            itempre1.Quality = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre1);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
+            Assert.True(itempost1.Quality == 0);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itempre2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault();
+            itempre2.Quality = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre2);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost2 = _database.Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault();
+            Assert.True(itempost2.Quality == 0);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itempre3 = _database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault();
+            itempre3.Quality = 0;
+            itempre3.SellIn = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre3);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost3 = _database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault();
+            Assert.True(itempost3.Quality == 0);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+
+            var itempre4 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault();
+            itempre4.Quality = 0;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre4);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost4 = _database.Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault();
+            Assert.True(itempost4.Quality == 0);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+        }
+
+        [Fact]
+        public void AGED_BRIE_QUALITY_INCREASES()
+        {
+            var itempre4 = _database.Where(a => a.Name == "Aged Brie").FirstOrDefault();
+            var itemprequality4 = itempre4.Quality;
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ReplaceItem(itempre4);
+            SOLID_Principles_LIB.Functions.Main_Loop.ExecuteDayPassedSimulation(_database);
+            var itempost4 = _database.Where(a => a.Name == "Aged Brie").FirstOrDefault();
+            Assert.True(itempost4.Quality > itemprequality4);
+            SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
+        }
+
+        [Fact]
+        public void QUALITY_OF_ITEM_NEVER_ABOVE_50()
+        {
+            // backstage pass never passes 50
+        }
+
+        [Fact]
+        public void SULFARAS_DOESNT_DECREASE_QUALITY()
+        {
+        }
+
+        [Fact]
+        public void SULFARAS_DOESNT_SELL()
+        {
+
+        }
+
+        [Fact]
+        public void BACKSTAGE_PASS_DIVERGENT_QUALITY_RATE()
+        {
+        }
+    }
+}
