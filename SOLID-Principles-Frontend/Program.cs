@@ -1,4 +1,6 @@
-﻿using SOLID_Principles_LIB.Functions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SOLID_Principles_Frontend.Dependency_Injection;
+using SOLID_Principles_LIB.Functions;
 using SOLID_Principles_LIB.Singletons;
 using System;
 using System.Collections.Generic;
@@ -8,10 +10,22 @@ namespace SOLID_Principles_Frontend
 {
     class Program
     {
-     
+
+        //private readonly ITest _testservice;
+        //public Program(ITest testservice)
+        //{
+        //    _testservice = testservice; 
+        //}
+        //private string GetTest()
+        //{
+        //    return _testservice.Returntext();
+        //}
+
         static void Main(string[] args)
         {
-
+            //var host = Startup.CreateHostBuilder(args).Build();
+            //var text = host.Services.GetRequiredService<Program>().GetTest();
+            //Console.WriteLine(text);
             var Database = ItemsSingleton.GetInstance();
 
             int index = 0;
@@ -33,7 +47,7 @@ namespace SOLID_Principles_Frontend
                 //if (Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").Count != 0)
                 //{ 
                 Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Name) ;
+                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Name);
                 Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().SellIn);
                 Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Quality);
                 Console.WriteLine("");

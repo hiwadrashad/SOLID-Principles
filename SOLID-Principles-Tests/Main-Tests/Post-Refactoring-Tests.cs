@@ -11,16 +11,9 @@ namespace SOLID_Principles_Tests.Main_Tests
 {
     public class Pre_Adjustment_Tests
     {
-                    //    {
-                    //new Item { Name = "+5 Dexterity Vest", SellIn = 10, Quality = 20 },
-                    //new Item { Name = "Aged Brie", SellIn = 2, Quality = 0 },
-                    //new Item { Name = "Elixir of the Mongoose", SellIn = 5, Quality = 7 },
-                    //new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 },
-                    //new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 15, Quality = 20 },
-                    //new Item { Name = "Conjured Mana Cake", SellIn = 3, Quality = 6 }
 
         public static IList<Item> _database = SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().GetItems();
-        [Fact]
+        [Fact (Skip = "Not needed")]
 
         public void ITEM_DECREASES_IN_QUALITY()
         {
@@ -128,28 +121,6 @@ namespace SOLID_Principles_Tests.Main_Tests
             var itempost4 = _database.Where(a => a.Name == "Aged Brie").FirstOrDefault();
             Assert.True(itempost4.Quality > itemprequality4);
             SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
-        }
-
-        [Fact]
-        public void QUALITY_OF_ITEM_NEVER_ABOVE_50()
-        {
-            // backstage pass never passes 50
-        }
-
-        [Fact]
-        public void SULFARAS_DOESNT_DECREASE_QUALITY()
-        {
-        }
-
-        [Fact]
-        public void SULFARAS_DOESNT_SELL()
-        {
-
-        }
-
-        [Fact]
-        public void BACKSTAGE_PASS_DIVERGENT_QUALITY_RATE()
-        {
         }
     }
 }
