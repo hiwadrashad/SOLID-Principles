@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SOLID_Principles_Frontend.Dependency_Injection;
 using SOLID_Principles_LIB.Functions;
 using SOLID_Principles_LIB.Singletons;
 using System;
@@ -11,21 +10,10 @@ namespace SOLID_Principles_Frontend
     class Program
     {
 
-        //private readonly ITest _testservice;
-        //public Program(ITest testservice)
-        //{
-        //    _testservice = testservice; 
-        //}
-        //private string GetTest()
-        //{
-        //    return _testservice.Returntext();
-        //}
 
         static void Main(string[] args)
         {
-            //var host = Startup.CreateHostBuilder(args).Build();
-            //var text = host.Services.GetRequiredService<Program>().GetTest();
-            //Console.WriteLine(text);
+
             var Database = ItemsSingleton.GetInstance();
 
             int index = 0;
@@ -42,40 +30,57 @@ namespace SOLID_Principles_Frontend
             {
                 if (!(index == 0))
                 {
-                    Main_Loop.ExecuteDayPassedSimulation(Database.GetItems());
+                    //Main_Loop.ExecuteDayPassedSimulation(Database.GetItems());
+                    Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(Database.GetItems());
                 }
-                //if (Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").Count != 0)
-                //{ 
-                Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Name);
-                Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().SellIn);
-                Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Quality);
-                Console.WriteLine("");
-                Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Aged Brie").FirstOrDefault().Name);
-                Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Aged Brie").FirstOrDefault().SellIn);
-                Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Aged Brie").FirstOrDefault().Quality);
-                Console.WriteLine("");
-                Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().Name);
-                Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().SellIn);
-                Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().Quality);
-                Console.WriteLine("");
-                Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault().Name);
-                Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault().SellIn);
-                Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault().Quality);
-                Console.WriteLine("");
-                Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Name);
-                Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().SellIn);
-                Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Quality);
-                Console.WriteLine("");
-                Console.WriteLine("===========================================================================");
-                Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().Name);
-                Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().SellIn);
-                Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().Quality);
-                Console.WriteLine("");
+                if (Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").Count() != 0)
+                {
+                    Console.WriteLine("===========================================================================");
+                    Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Name);
+                    Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().SellIn);
+                    Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault().Quality);
+                    Console.WriteLine("");
+                }
+                if (Database.GetItems().Where(a => a.Name == "Aged Brie").Count() != 0)
+                {
+                    Console.WriteLine("===========================================================================");
+                    Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Aged Brie").FirstOrDefault().Name);
+                    Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Aged Brie").FirstOrDefault().SellIn);
+                    Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Aged Brie").FirstOrDefault().Quality);
+                    Console.WriteLine("");
+                }
+                if (Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").Count() != 0)
+                {
+                    Console.WriteLine("===========================================================================");
+                    Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().Name);
+                    Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().SellIn);
+                    Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Elixir of the Mongoose").FirstOrDefault().Quality);
+                    Console.WriteLine("");
+                }
+                if (Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").Count() != 0)
+                {
+                    Console.WriteLine("===========================================================================");
+                    Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault().Name);
+                    Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault().SellIn);
+                    Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault().Quality);
+                    Console.WriteLine("");
+                }
+                if (Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").Count() != 0)
+                {
+                    Console.WriteLine("===========================================================================");
+                    Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Name);
+                    Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().SellIn);
+                    Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Quality);
+                    Console.WriteLine("");
+                }
+                if (Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").Count() != 0)
+                {
+                    Console.WriteLine("===========================================================================");
+                    Console.WriteLine(" Name : " + Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().Name);
+                    Console.WriteLine(" Sell in given days : " + Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().SellIn);
+                    Console.WriteLine(" Quality : " + Database.GetItems().Where(a => a.Name == "Conjured Mana Cake").FirstOrDefault().Quality);
+                    Console.WriteLine("");
+                }
                 var input = System.Console.ReadLine();
                 if (input == "Exit" || input == "exit")
                 {
@@ -83,7 +88,7 @@ namespace SOLID_Principles_Frontend
                 }
                 if (input.Contains("Buy") || input.Contains("buy"))
                 {
-                    Database.RemoveItem("");
+                    Database.RemoveItem(input);
                 }
                 index = index + 1;
             }

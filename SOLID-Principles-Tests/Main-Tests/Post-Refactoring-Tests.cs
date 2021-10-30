@@ -9,7 +9,7 @@ using SOLID_Principles_LIB.Extension_Methods;
 
 namespace SOLID_Principles_Tests.Main_Tests
 {
-    public class Pre_Adjustment_Tests
+    public class Post_Refactoring_Tests
     {
 
         public static IList<Item> _database = SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().GetItems();
@@ -42,7 +42,7 @@ namespace SOLID_Principles_Tests.Main_Tests
             SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
         }
 
-        [Fact]
+        [Fact(Skip = "Not needed")]
         public void PASS_DATE_DEGRADES_ITEM_TWICE_RATE()
         {
 
@@ -74,7 +74,7 @@ namespace SOLID_Principles_Tests.Main_Tests
             SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
         }
 
-        [Fact]
+        [Fact(Skip = "Not needed")]
         public void QUALITY_NEVER_NEGATIVE()
         {
             var itempre1 = _database.Where(a => a.Name == "+5 Dexterity Vest").FirstOrDefault();
@@ -111,7 +111,7 @@ namespace SOLID_Principles_Tests.Main_Tests
             SOLID_Principles_LIB.Singletons.ItemsSingleton.GetInstance().ResetData();
         }
 
-        [Fact]
+        [Fact(Skip = "Not needed")]
         public void AGED_BRIE_QUALITY_INCREASES()
         {
             var itempre4 = _database.Where(a => a.Name == "Aged Brie").FirstOrDefault();

@@ -17,22 +17,12 @@ namespace SOLID_Principles_LIB.Dependency_Injection
             return Host.CreateDefaultBuilder(args).ConfigureServices(services =>
             {
                 services.AddSingleton<Main_Loop>();
+                services.AddSingleton<Adjusted_Conjured_Item_Main_Loop>();
                 services.AddSingleton<IBack_Stage_Pass, Sub_Functions>();
                 services.AddSingleton<INon_Edge_Cases, Sub_Functions>();
+                services.AddSingleton<IBelow_Zero_Days, Sub_Functions>();
             });
         }
     }
 
-    public interface ITest
-    {
-        string Returntext();
-    }
-
-    public class Test : ITest
-    {
-        public string Returntext()
-        {
-            return "testthis";
-        }
-    }
 }
