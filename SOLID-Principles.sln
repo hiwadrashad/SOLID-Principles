@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLID-Principles-Frontend", "SOLID-Principles-Frontend\SOLID-Principles-Frontend.csproj", "{723D0D4E-4FE1-44C8-9E95-C52D6B7A30B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLID-Principles-Frontend", "SOLID-Principles-Frontend\SOLID-Principles-Frontend.csproj", "{723D0D4E-4FE1-44C8-9E95-C52D6B7A30B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLID-Principles-LIB", "SOLID-Principles-LIB\SOLID-Principles-LIB.csproj", "{DB699635-4C0A-4443-8B9D-BC50A1810E89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SOLID-Principles-LIB", "SOLID-Principles-LIB\SOLID-Principles-LIB.csproj", "{DB699635-4C0A-4443-8B9D-BC50A1810E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLID-Principles-Tests", "SOLID-Principles-Tests\SOLID-Principles-Tests.csproj", "{70DA82EA-4D81-46D9-930C-D7CEAC9E0354}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOLID-Principles-Test", "SOLID-Principles-Test\SOLID-Principles-Test.csproj", "{0AC30976-FF1B-4E4E-B472-F33D881CE595}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{DB699635-4C0A-4443-8B9D-BC50A1810E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB699635-4C0A-4443-8B9D-BC50A1810E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB699635-4C0A-4443-8B9D-BC50A1810E89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{70DA82EA-4D81-46D9-930C-D7CEAC9E0354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70DA82EA-4D81-46D9-930C-D7CEAC9E0354}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70DA82EA-4D81-46D9-930C-D7CEAC9E0354}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70DA82EA-4D81-46D9-930C-D7CEAC9E0354}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC30976-FF1B-4E4E-B472-F33D881CE595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC30976-FF1B-4E4E-B472-F33D881CE595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC30976-FF1B-4E4E-B472-F33D881CE595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC30976-FF1B-4E4E-B472-F33D881CE595}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

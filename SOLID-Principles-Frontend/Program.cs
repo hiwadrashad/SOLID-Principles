@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SOLID_Principles_LIB.Functions;
+using SOLID_Principles_LIB.Interfaces;
 using SOLID_Principles_LIB.Singletons;
+using SOLID_Principles_LIB.Strategy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,16 @@ namespace SOLID_Principles_Frontend
 {
     class Program
     {
+        private static INon_Edge_Cases _nonedgecasesservice;
+        private static IBack_Stage_Pass _backstagepassservice;
+        private static IBelow_Zero_Days _belowzerodays;
 
-
+        public Program(INon_Edge_Cases nonedgecasesservice, IBack_Stage_Pass backstagepassservice, IBelow_Zero_Days belowzerodays)
+        {
+            _nonedgecasesservice = nonedgecasesservice;
+            _backstagepassservice = backstagepassservice;
+            _belowzerodays = belowzerodays;
+        }
         static void Main(string[] args)
         {
 
@@ -30,8 +40,9 @@ namespace SOLID_Principles_Frontend
             {
                 if (!(index == 0))
                 {
-                    //Main_Loop.ExecuteDayPassedSimulation(Database.GetItems());
-                    Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(Database.GetItems());
+                    OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+                    STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(_nonedgecasesservice, _backstagepassservice, _belowzerodays));
+                    STRATEGY.ExecuteDayPassed(Database.GetItems());
                 }
                 if (Database.GetItems().Where(a => a.Name == "+5 Dexterity Vest").Count() != 0)
                 {

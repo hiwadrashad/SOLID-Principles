@@ -1,5 +1,7 @@
-﻿using SOLID_Principles_LIB.Models;
+﻿using SOLID_Principles_LIB.Functions;
+using SOLID_Principles_LIB.Models;
 using SOLID_Principles_LIB.Singletons;
+using SOLID_Principles_LIB.Strategy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace SOLID_Principles_Tests.Main_Tests
+namespace SOLID_Principles_Test.Main_Tests
 {
     public class Post_Modifying_Logic
     {
@@ -57,7 +59,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         public void ITEM_DECREASES_IN_QUALITY(string input)
         {
             var itemqualitycount1 = database.Where(a => a.Name == input).FirstOrDefault().Quality;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             var itempost1 = database.Where(a => a.Name == input).FirstOrDefault();
             Assert.Equal(1, itemqualitycount1 - itempost1.Quality);
         }
@@ -69,7 +74,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         {
             var itemqualitycount1 = database.Where(a => a.Name == input).FirstOrDefault().Quality;
             database.Where(a => a.Name == input).FirstOrDefault().SellIn = 0;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             var itempost1 = database.Where(a => a.Name == input).FirstOrDefault();
             Assert.Equal(2, itemqualitycount1 - itempost1.Quality);
         }
@@ -82,7 +90,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         public void QUALITY_NEVER_NEGATIVE(string input)
         {
             database.Where(a => a.Name == input).FirstOrDefault().Quality = 0;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             Assert.True(database.Where(a => a.Name == input).FirstOrDefault().Quality == 0);
         }
 
@@ -92,7 +103,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         {
             database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Quality = 0;
             database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().SellIn = 0;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             Assert.True(database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Quality == 0);
         }
 
@@ -101,7 +115,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         public void AGED_BRIE_QUALITY_INCREASES()
         {
             var itemprequality = database.Where(a => a.Name == "Aged Brie").FirstOrDefault().Quality;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             var itempost = database.Where(a => a.Name == "Aged Brie").FirstOrDefault();
             Assert.True(itempost.Quality > itemprequality);
         }
@@ -112,7 +129,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         public void QUALITY_OF_ITEM_NEVER_ABOVE_50(string input)
         {
             database.Where(a => a.Name == input).FirstOrDefault().Quality = 50;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             var itempost = database.Where(a => a.Name == input).FirstOrDefault();
             Assert.True(itempost.Quality == 50);
         }
@@ -121,7 +141,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         [Fact]
         public void SULFARAS_DOESNT_DECREASE_QUALITY()
         {
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             var itempost = database.Where(a => a.Name == "Sulfuras, Hand of Ragnaros").FirstOrDefault();
             Assert.True(itempost.Quality == 80);
         }
@@ -131,7 +154,10 @@ namespace SOLID_Principles_Tests.Main_Tests
         public void BACKSTAGE_PASS_DIVERGENT_QUALITY_RATE()
         {
             var previousquality = database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault().Quality;
-            SOLID_Principles_LIB.Functions.Adjusted_Conjured_Item_Main_Loop.ExecuteDayPassedSimulation(database);
+            OpenClosedStrategy STRATEGY = new OpenClosedStrategy();
+            Sub_Functions DIReplacement = new Sub_Functions();
+            STRATEGY.SetStrategy(new Adjusted_Conjured_Item_Main_Loop(DIReplacement, DIReplacement, DIReplacement));
+            STRATEGY.ExecuteDayPassed(database);
             var itempost = database.Where(a => a.Name == "Backstage passes to a TAFKAL80ETC concert").FirstOrDefault();
             Assert.True(itempost.Quality > previousquality);
         }

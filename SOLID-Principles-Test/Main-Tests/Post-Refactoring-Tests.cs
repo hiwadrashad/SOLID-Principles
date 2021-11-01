@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xunit;
 using SOLID_Principles_LIB.Extension_Methods;
 
-namespace SOLID_Principles_Tests.Main_Tests
+namespace SOLID_Principles_Test.Main_Tests
 {
     public class Post_Refactoring_Tests
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace SOLID_Principles_Tests.Main_Tests
+namespace SOLID_Principles_Test.Main_Tests
 {
     public class Pre_Refactoring_Tests
     {

@@ -12,5 +12,10 @@ namespace SOLID_Principles_LIB.Abstractions
         public virtual void ExecuteDayPassedSimulation(IList<Item> Items)
         { 
         }
+
+        public virtual void ExecuteDayPassedSimulationTroughInstance(IList<Item> Items)
+        {  
+        }
+
     }
 }
